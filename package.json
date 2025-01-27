@@ -1,0 +1,21 @@
+{
+  "name": "mvp-system-app-script",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "system",
+    "appscript",
+    "js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "mvp-system-app-script"
+  },
+  "license": "ISC",
+  "author": "AlexMagalhães",
+  "type": "commonjs",
+  "main": "_root.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
