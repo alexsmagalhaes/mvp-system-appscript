@@ -70,6 +70,10 @@ const UserController = {
     const { id } = TokenService.verifyJWT(token, JWT_SECRET);
     if (!id) ErrorHandler.send(400, "Token invalido!");
 
+    const user = UserModel.findById(id);
+    if (user["access-token"] !== token)
+      return ErrorHandler.send(400, "Logout já realizado!");
+
     UserModel.update(id, {
       "access-token": "",
       "expires-at": "",

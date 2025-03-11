@@ -5,15 +5,7 @@ const useLogin = async (data) => {
 };
 
 const useLogout = async (data) => {
-  if (!data) return ErrorHandler.send(404, "Informações não repassadas!");
+  let req = { body: data };
 
-  let req = data;
-
-  try {
-    req = JSON.parse(data);
-  } catch (err) {
-    return ErrorHandler.send(404, "JSON inválido!");
-  }
-
-  return await Runner.exec(UserController.logout)(req);
+  return await Runner.exec(Validate.json, UserController.logout)(req);
 };
