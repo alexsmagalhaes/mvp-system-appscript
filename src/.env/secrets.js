@@ -1,0 +1,4 @@
+const JWT_SECRET = "";
+const TOKEN_EXPIRATION_HOURS = 24;
+const IA_SERVICE_API_KEY = "";
+const DB_CONNECTION = "";
