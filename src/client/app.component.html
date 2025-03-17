@@ -1,0 +1,60 @@
+<script type="text/babel">
+  const { BrowserRouter, Route, Link, Switch, Redirect, useHistory } =
+    ReactRouterDOM;
+
+  const AuthContext = React.createContext(false);
+
+  function AuthProvider({ children }) {
+    const [session, setSession] = React.useState(false);
+
+    return (
+      <AuthContext.Provider value={{ session, setSession }}>
+        {children}
+      </AuthContext.Provider>
+    );
+  }
+
+  function PrivateRoute({ component: Component, ...rest }) {
+    const { session } = React.useContext(AuthContext);
+
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          session ? <Component {...props} /> : <Redirect to="/" />
+        }
+      />
+    );
+  }
+
+  function App() {
+    const { session } = React.useContext(AuthContext);
+    const { logout } = useAuth();
+
+    return (
+      <BrowserRouter>
+        <div>
+          <nav>
+            {!session && <Link to="/">Login</Link>}
+            {session && <Link to="/dashboard">Dashboard</Link>}
+            {session && <button onClick={() => logout()}>Sair</button>}
+          </nav>
+
+          <Switch>
+            <Route path="/" exact component={Login} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+
+            <Redirect to="/" />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  }
+
+  ReactDOM.render(
+    <AuthProvider>
+      <App />
+    </AuthProvider>,
+    document.getElementById("root")
+  );
+</script>

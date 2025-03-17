@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebApp</title>
+
+    <!-- Inclui o estilo principal -->
+    <?!= HtmlManager.include('src/client/_main.styles') ?>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- React e ReactDOM -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <!-- React Router DOM -->
+    <script src="https://unpkg.com/react-router-dom@5.2.0/umd/react-router-dom.min.js"></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- Chama a função para incluir os scripts combinados -->
+    <?!= HtmlManager.compileScript() ?>
+  </body>
+</html>
