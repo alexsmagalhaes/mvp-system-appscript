@@ -1,0 +1,1 @@
+Adicionar um leitor de dados com IA ao projeto de automação de emails, onde o gestor vai conseguir vizualizar os dados de forma simples e fazer perguntas sobre negócios do que ele coletou com o a automação de coleta de dados dos hóspedes.
