@@ -1,0 +1,69 @@
+<script type="text/babel">
+  function Login() {
+    const { session } = React.useContext(AuthContext);
+    const { login, logout, loading, error } = useAuth();
+
+    const handleLogin = (event) => {
+      event.preventDefault();
+      const email = event.target.email.value;
+      const password = event.target.password.value;
+
+      login(email, password);
+    };
+
+    const handleLogout = () => {
+      logout();
+    };
+
+    return (
+      <div className="container d-flex flex-column align-items-center mt-5">
+        <h2 className="mb-4">Login</h2>
+        <form
+          onSubmit={handleLogin}
+          className="w-50 p-4 border rounded shadow bg-light"
+        >
+          <div className="mb-3">
+            <label className="form-label">Email:</label>
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Senha:</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-primary w-100"
+            disabled={loading}
+          >
+            Entrar
+          </button>
+        </form>
+        {session && (
+          <button
+            className="btn btn-danger mt-3"
+            onClick={handleLogout}
+            disabled={loading}
+          >
+            Sair
+          </button>
+        )}
+
+        {loading && <p className="mt-3 text-muted">Carregando...</p>}
+        {error && <p className="mt-3 text-danger">{error?.errors[0]}</p>}
+        {session && (
+          <p className="mt-3 text-success">Bem-vindo, {session?.name}!</p>
+        )}
+      </div>
+    );
+  }
+</script>

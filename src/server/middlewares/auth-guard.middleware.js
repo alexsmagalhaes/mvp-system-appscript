@@ -18,6 +18,8 @@ const AuthGuard = {
         return ErrorHandler.send(401, "Usuário não encontrado!");
       }
 
+      req.session = session;
+
       next();
     } catch (err) {
       ErrorHandler.send(400, "Erro ao verificar autenticação");

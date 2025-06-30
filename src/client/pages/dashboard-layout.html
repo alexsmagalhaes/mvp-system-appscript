@@ -1,0 +1,16 @@
+<script type="text/babel">
+  function Dashboard() {
+    const { session } = React.useContext(AuthContext);
+
+    return (
+      <div className="container mt-5">
+        <div className="card shadow p-4">
+          <h2 className="text-primary">Dashboard</h2>
+          <p className="fs-5">
+            Olá, <strong>{session?.name}</strong>!
+          </p>
+        </div>
+      </div>
+    );
+  }
+</script>

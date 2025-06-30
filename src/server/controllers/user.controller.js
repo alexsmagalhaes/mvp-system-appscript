@@ -16,6 +16,7 @@ const UserController = {
       (row) => row.email === email && row.password === password
     );
 
+    // ele gera erro se usar somente numeros na senha
     if (!user) {
       return ErrorHandler.send(400, "Credenciais inválidas");
     }
@@ -51,6 +52,7 @@ const UserController = {
       status: 200,
       data: {
         id,
+        role,
         name,
         email,
         token,
@@ -87,5 +89,9 @@ const UserController = {
       },
       success: ["Logout bem sucedido!"],
     };
+  },
+
+  getSession(req, res) {
+    return req.session;
   },
 };

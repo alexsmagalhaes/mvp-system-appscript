@@ -28,7 +28,8 @@ const UserModel = {
 
     const rowIndex = data.findIndex((user) => user.id == id);
 
-    if (rowIndex === -1) return ErrorHandler.send(400, "Usuario não encontrado!");
+    if (rowIndex === -1)
+      return ErrorHandler.send(400, "Usuario não encontrado!");
 
     const updatedData = { ...data[rowIndex], ...values };
 

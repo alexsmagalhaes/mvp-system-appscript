@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+    <script>
+      function login() {
+        google.script.run
+          .withSuccessHandler((response) => {
+            document.getElementById("result").innerText =
+              "Resposta: " + JSON.stringify(response);
+          })
+          .withFailureHandler((error) => {
+            document.getElementById("result").innerText =
+              "Erro: " + error.message;
+          })
+          .useLogin('{"email": "alex@example.com", "password": "Alex"}');
+      }
+    </script>
+
+    <script>
+      function logout() {
+        google.script.run
+          .withSuccessHandler((response) => {
+            document.getElementById("result").innerText =
+              "Resposta: " + JSON.stringify(response);
+          })
+          .withFailureHandler((error) => {
+            document.getElementById("result").innerText =
+              "Erro: " + error.message;
+          })
+          .useLogout(
+            '{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsIm5hbWUiOiJBbGV4IiwiZW1haWwiOiJhbGV4QGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwidGltZXN0YW1wIjoxNzQxNjMyNjIzODQ3LCJleHBpcmVzQXQiOjE3NDE3MTkwMjM4NDcsImlhdCI6MTc0MTYzMjYyMywiZXhwIjozMTI3ODE2MzI2MjN9._sT0SgkRDtbdioW8CB6YVzOeQl1NSNEEo9GSIZ033_0="}'
+          );
+      }
+    </script>
+  </head>
+
+  <body>
+    <h2>Login</h2>
+    <button onclick="login()">Fazer Login</button>
+    <button onclick="logout()">Fazer Logout</button>
+    <p id="result"></p>
+  </body>
+</html>

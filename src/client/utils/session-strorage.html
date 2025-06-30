@@ -1,0 +1,46 @@
+<script>
+  const SessionStorageManager = {
+    set(key, value) {
+      try {
+        if (typeof value === "function") {
+          value = value.toString();
+        }
+
+        if (typeof value === "object") {
+          value = JSON.stringify(value);
+        }
+
+        sessionStorage.setItem(key, value);
+        return true;
+      } catch (error) {
+        console.error("Erro ao configurar o sessionStorage:", error);
+        return false;
+      }
+    },
+
+    get(key) {
+      try {
+        const data = sessionStorage.getItem(key);
+
+        if (data) {
+          return data;
+        }
+
+        return null;
+      } catch (error) {
+        console.error("Erro ao obter o item do sessionStorage:", error);
+        return null;
+      }
+    },
+
+    remove(key) {
+      try {
+        sessionStorage.removeItem(key);
+        return true;
+      } catch (error) {
+        console.error("Erro ao remover o item do sessionStorage:", error);
+        return false;
+      }
+    },
+  };
+</script>
