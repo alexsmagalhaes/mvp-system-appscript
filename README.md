@@ -1,6 +1,6 @@
-# 🧪 MVP de Estudo – Evolução de Sistemas Web (Antigo → Atual com React + Conceitos de Express JS)
+# 🧪 MVP sistema de automações (Antigo → Atual com React + Conceitos de Express JS)
 
-Este projeto é um MVP de estudo que simula a **evolução de aplicações web**, partindo de soluções baseadas em **jQuery + JavaScript antigo (ES5)** até uma abordagem moderna com **React** no frontend e uma arquitetura organizada no backend usando **Google Apps Script e Google Sheets como banco de dados**.
+Este projeto é um trecho de um MVP para validação, partindo de uma solução baseada em **jQuery + JavaScript antigo (ES5)** até uma abordagem moderna com **React** no frontend e uma arquitetura organizada no backend usando **Google Apps Script e Google Sheets como banco de dados**.
 
 ---
 
@@ -14,11 +14,10 @@ Este projeto é um MVP de estudo que simula a **evolução de aplicações web**
 
 ## 📚 Objetivo
 
-- Construir uma aplicação **completa (frontend + backend)**, simulando o desenvolvimento de sistemas antigos até estruturas modernas e organizadas.
-- Mostrar como aplicações web eram estruturadas em camadas simples com **jQuery e JavaScript ES5**, e como isso evoluiu para aplicações com **React e separação de responsabilidades**.
+- Construir uma aplicação **(frontend + backend)** para integrar em um sistema mais antigo.
 - Utilizar **Google Sheets como banco de dados** e **Apps Script como backend** customizado.
 - Aplicar conceitos modernos de arquitetura backend (rotas, controllers, services, middlewares) mesmo fora de ambientes tradicionais como Node/Express.
-- Demonstrar que React é apenas uma **biblioteca de interface**, e como ele pode ser adotado de forma incremental.
+- Desenvolver algo que tenha uma manutenção mais fácil e que possa ser reutilizados com diferentes usuários.
 
 ---
 
@@ -38,11 +37,11 @@ Este projeto é um MVP de estudo que simula a **evolução de aplicações web**
 ### 🎨 Frontend
 
 #### Abordagem Antiga
-- **JavaScript ES5** (`var`, funções globais)
+- **JavaScript ES5** 
 - **jQuery**
-- Manipulação da DOM com `appendChild`, `innerHTML`, `document.write`
+- Manipulação da DOM com `appendChild`
 
-#### Abordagem Moderna
+#### Abordagem Mais Moderna
 - **React (via CDN)**
 - **React Router (via CDN)**
 - **Bootstrap (via CDN)** para estilização
