@@ -1,0 +1,46 @@
+<script type="text/babel">
+  function useAuth() {
+    const { exec } = useGoogleScript();
+    const { setSession } = React.useContext(AuthContext);
+    const { value, setCookie, deleteCookie } = useCookie("user-token");
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState(null);
+    const history = useHistory();
+
+    const login = async (email, password) => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const res = await exec("useLogin", JSON.stringify({ email, password }));
+        const { id, role, name, email: userEmail, token } = res.data;
+
+        setSession({ id, role, name, email: userEmail });
+        setCookie(token);
+        history.push("/dashboard");
+      } catch (err) {
+        setError(err);
+        console.error("Erro ao fazer login:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const logout = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        await exec("useLogout", JSON.stringify({ token: value }));
+      } catch (err) {
+        setError(err);
+      }
+      deleteCookie();
+      setLoading(false);
+      setSession(false);
+      history.push("/");
+    };
+
+    return { login, logout, loading, error };
+  }
+</script>

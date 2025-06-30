@@ -1,0 +1,63 @@
+<script type="text/babel">
+  const { useState, useEffect } = React;
+
+  const useCookie = (key, initialValue, expInHours = 24) => {
+    const [value, setValue] = useState(() => {
+      const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${key}=`))
+        ?.split("=")[1];
+
+      return cookieValue ? decodeURIComponent(cookieValue) : initialValue;
+    });
+
+    const setCookie = (newValue, options = {}) => {
+      const { expInHours: customExpInHours = expInHours } = options;
+
+      try {
+        let valueToStore = newValue;
+        if (typeof newValue === "function") {
+          valueToStore = newValue(value);
+        }
+
+        if (typeof valueToStore === "object") {
+          valueToStore = JSON.stringify(valueToStore);
+        }
+
+        const expiresIn = new Date(
+          Date.now() + customExpInHours * 3600000
+        ).toUTCString();
+
+        document.cookie = `${key}=${encodeURIComponent(
+          valueToStore
+        )}; path=/; expires=${expiresIn}; Secure; SameSite=None`;
+
+        setValue(valueToStore);
+      } catch (error) {
+        console.error("Erro ao configurar o cookie:", error);
+      }
+    };
+
+    const deleteCookie = () => {
+      try {
+        document.cookie = `${key}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure; SameSite=None`;
+        setValue(null);
+      } catch (error) {
+        console.error("Erro ao deletar o cookie:", error);
+      }
+    };
+
+    useEffect(() => {
+      const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${key}=`))
+        ?.split("=")[1];
+
+      if (cookieValue) {
+        setValue(decodeURIComponent(cookieValue));
+      }
+    }, [key]);
+
+    return { value, setCookie, deleteCookie };
+  };
+</script>

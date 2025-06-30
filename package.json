@@ -14,7 +14,7 @@
   "license": "ISC",
   "author": "AlexMagalhães",
   "type": "commonjs",
-  "main": "_root.js",
+  "main": "src/_main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }
